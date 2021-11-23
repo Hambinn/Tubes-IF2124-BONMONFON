@@ -8,7 +8,37 @@ import argparse
 
 import lexer
 import cykParser
-from ruleDictionary import rules
+from rulesDictionary import rules
+
+def title():
+    """ --- PRINT TITLE BANNER --- """
+    print('\n\n')
+    print('                        TUGAS BESAR')
+    print('           IF2124 TEORI BAHASA FORMAL DAN OTOMATA')
+    print('              ______      _   _                          ')
+    print('              | ___ \    | | | |                         ')
+    print('              | |_/ /   _| |_| |__   ___  _ __           ')
+    print('              |  __/ | | | __| \'_ \ / _ \| \'_ \          ')
+    print('              | |  | |_| | |_| | | | (_) | | | |         ')
+    print('              \_|   \__, |\__|_| |_|\___/|_| |_|         ')
+    print('            ____     __/ |             _ _               ')
+    print('           / __ \   |___/             (_) |              ')
+    print('          | /  \/ ___  _ __ ___  _ __  _| | ___ _ __ ')
+    print('          | |    / _ \| \'_ ` _ \| \'_ \| | |/ _ \ \'__|')
+    print('          | \__/\ (_) | | | | | | |_) | | |  __/ |   ')
+    print('           \____/\___/|_| |_| |_| .__/|_|_|\___|_|   ')
+    print('                                | |                  ')
+    print('                                |_| Created by: BonMonFon')
+    print('\n\n')
+
+def fileReader(fileName):
+    """ --- READ FILE --- """
+    try:
+        fileRead = open(fileName, 'r', encoding="utf8")
+        return fileRead.read()
+    except Exception as e:
+        print('Error opening: ' + fileName)
+        exit(0)
 
 def processFile(file):
     """ ------------------ PROCESS FILE ------------------ """
@@ -71,41 +101,6 @@ def processText(text):
     CYK.parse()
     return CYK.print_tree()
 
-
-def fileReader(fileName):
-    """ --- READ FILE --- """
-    try:
-        fileRead = open(fileName, 'r', encoding="utf8")
-        return fileRead.read()
-    except Exception as e:
-        print('Error opening: ' + fileName)
-        exit(0)
-
-def title():
-    print('')
-    print('TUGAS BESAR')
-    print('IF2124 TEORI BAHASA FORMAL DAN OTOMATA')
-    print('______      _   _                          ')
-    print('| ___ \    | | | |                         ')
-    print('| |_/ /   _| |_| |__   ___  _ __           ')
-    print('|  __/ | | | __| \'_ \ / _ \| \'_ \          ')
-    print('| |  | |_| | |_| | | | (_) | | | |         ')
-    print('\_|   \__, |\__|_| |_|\___/|_| |_|         ')
-    print('       __/ |                               ')
-    print('      |___/                                ')
-    print('  ____                       _ _           ')
-    print(' / __ \                     (_) |          ')
-    print('| /  \/ ___  _ __ ___  _ __  _| | ___ _ __ ')
-    print('| |    / _ \| \'_ ` _ \| \'_ \| | |/ _ \ \'__|')
-    print('| \__/\ (_) | | | | | | |_) | | |  __/ |   ')
-    print(' \____/\___/|_| |_| |_| .__/|_|_|\___|_|   ')
-    print('                      | |                  ')
-    print('                      |_|                  ')
-    print('                           Created by: BonMonFon')
-    print('')
-    print('')
-
-
 if __name__ == '__main__':
     CYK = cykParser.Parser('grammar.txt', " COMMENT ")
 
@@ -128,10 +123,15 @@ if __name__ == '__main__':
                 output += token + ' '
     except lexer.Error as e:
         print('LexerError at position %s' % e.pos)
+        exit(0)
 
     fileOutput = output.split('NEWLINE')
 
-    print('')
-    print('========================= VERDICT =========================')
+    print('\n======================== COMPILING =======================\n')
+
+    print('Compiling {}...\n'.format(fileName))
+    print('Waiting for yout verdict...\n')
+    print('========================= VERDICT ========================\n')
 
     processFile(fileOutput)
+    print('\n')
