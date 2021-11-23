@@ -1,4 +1,4 @@
-RULE_DICT = {}
+RULE_DICTIONARY = {}
 
 def print_grammar(grammar):
 	for rule in grammar:
@@ -7,7 +7,7 @@ def print_grammar(grammar):
 			print(i, end=' ')
 		print()
 
-def write_grammar(grammar):
+def writeGrammar(grammar):
     file = open('cnf_grammar.txt', 'w')
     for rule in grammar:
         file.write(rule[0])
@@ -18,18 +18,20 @@ def write_grammar(grammar):
         file.write("\n")
     file.close()
 
-def read_grammar(grammar_file):
+def readGrammar(grammar_file):
     with open(grammar_file) as cfg:
         lines = cfg.readlines()
     return [x.replace("->", "").split() for x in lines]
-def add_rule(rule):
-    global RULE_DICT
 
-    if rule[0] not in RULE_DICT:
-        RULE_DICT[rule[0]] = []
-    RULE_DICT[rule[0]].append(rule[1:])
-def convert_grammar(grammar):
-    global RULE_DICT
+def addRule(rule):
+    global RULE_DICTIONARY
+
+    if rule[0] not in RULE_DICTIONARY:
+        RULE_DICTIONARY[rule[0]] = []
+    RULE_DICTIONARY[rule[0]].append(rule[1:])
+    
+def convGrammar(grammar):
+    global RULE_DICTIONARY
     unit_productions, result = [], []
     res_append = result.append
     index = 0
@@ -38,7 +40,7 @@ def convert_grammar(grammar):
         new_rules = []
         if len(rule) == 2 and rule[1][0] != "'":
             unit_productions.append(rule)
-            add_rule(rule)
+            addRule(rule)
             continue
         elif len(rule) > 2:
             terminals = [(item, i) for i, item in enumerate(rule) if item[0] == "'"]
@@ -51,22 +53,22 @@ def convert_grammar(grammar):
                 new_rules += [f"{rule[0]}{str(index)}", rule[1], rule[2]]
                 rule = [rule[0]] + [f"{rule[0]}{str(index)}"] + rule[3:]
                 index += 1
-        add_rule(rule)
+        addRule(rule)
         res_append(rule)
         if new_rules:
             res_append(new_rules)
     while unit_productions:
         rule = unit_productions.pop()
-        if rule[1] in RULE_DICT:
-            for item in RULE_DICT[rule[1]]:
+        if rule[1] in RULE_DICTIONARY:
+            for item in RULE_DICTIONARY[rule[1]]:
                 new_rule = [rule[0]] + item
                 if len(new_rule) > 2 or new_rule[1][0] == "'":
                     res_append(new_rule)
                 else:
                     unit_productions.append(new_rule)
-                add_rule(new_rule)
+                addRule(new_rule)
     return result
 
 if __name__ == '__main__':
 
-    write_grammar(convert_grammar(read_grammar('grammar.txt')))
+    writeGrammar(convGrammar(readGrammar('grammar.txt')))
