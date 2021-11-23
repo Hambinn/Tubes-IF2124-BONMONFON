@@ -5,7 +5,6 @@ import grammarConverter
 class Parser:
     def __init__(self, grammar, sentence):
         self.parse_chart = None
-        self.prods = {}
         self.grammar = None
         self.input = None
         self.sentence = sentence

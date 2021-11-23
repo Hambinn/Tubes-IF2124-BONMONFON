@@ -1,3 +1,5 @@
+#test case: if, elif, else
+
 # KAMUS
 # a1, a2 : int
 # operator : string (operator yang diterima adalah + (tambah), - (kurang), * (kali), / (bagi, dibulatkan ke bawah), dan % (sisa bagi))
