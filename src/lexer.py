@@ -2,9 +2,6 @@
 
 # IMPORT EXTERNAL MODULES
 import re
-import sys
-import argparse
-import cykParser
 
 class Lexer(object):
 

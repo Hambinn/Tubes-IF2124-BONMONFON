@@ -1,14 +1,10 @@
 """ -------------------------- MAIN.PY -------------------------- """
 
 # IMPORT EXTERNAL MODULES
-import re
-import sys
-import os
-import argparse
-
 import lexer
 import cykParser
 from rulesDictionary import rules
+from processInput import processFile
 
 def title():
     """ --- PRINT TITLE BANNER --- """
@@ -39,67 +35,6 @@ def fileReader(fileName):
     except Exception as e:
         print('Error opening: ' + fileName)
         exit(0)
-
-def processFile(file):
-    """ ------------------ PROCESS FILE ------------------ """
-    """ Prints 'Accepted' if no errors found in text;
-               'Syntax Error' and error location if found  """
-
-    # INITIALIZATION
-    multiLine = False
-    conditional = 0
-    foundError = False
-    lineIndex = 0
-
-    for line in file:
-        lineIndex += 1
-        # MULTILINE CHECKER
-        if ((line.find('TRIPLEQUOTE') != -1) and (multiLine == False)):
-            multiLine = True
-        elif ((line.find('TRIPLEQUOTE') != -1) and (multiLine == True)):
-            multiLine = False
-        else:
-            if (line == ' ' or line == ''):
-                print("",end='')
-            elif (multiLine == False):
-                # CONDITIONAL CHECKER
-                if (line.find(' IF') != -1):
-                    conditional += 1
-                    if (not processText(line)):
-                        foundError = True
-                        break
-                elif (line.find('ELIF') != -1):
-                    if (conditional > 0):
-                        line = 'ELIFTOK' + line
-                    if (not processText(line)):
-                        foundError = True
-                        break
-                elif (line.find('ELSE') != -1):
-                    if (conditional > 0):
-                        line = 'ELIFTOK' + line
-                    conditional -= 1
-                    if (not processText(line)):
-                        foundError = True
-                        break
-                else:
-                    if (not processText(line)):
-                        foundError = True
-                        break
-
-    if (foundError == False):
-        print('Accepted')
-    else:
-        print('Syntax Error')
-        print('Error found in line: {}'.format(lineIndex))
-
-
-def processText(text):
-    """ ------------ PROCESS TEXT ------------ """
-    """ return True if no Syntax errors found  """
-    
-    CYK.__call__(text)
-    CYK.parse()
-    return CYK.print_tree()
 
 if __name__ == '__main__':
     CYK = cykParser.Parser('grammar.txt', " COMMENT ")
@@ -133,5 +68,5 @@ if __name__ == '__main__':
     print('Waiting for yout verdict...\n')
     print('========================= VERDICT ========================\n')
 
-    processFile(fileOutput)
+    processFile(fileOutput,CYK)
     print('\n')
