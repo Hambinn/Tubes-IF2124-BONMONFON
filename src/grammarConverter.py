@@ -1,5 +1,22 @@
 RULE_DICT = {}
 
+def print_grammar(grammar):
+	for rule in grammar:
+		print(rule[0], " -> ", end='')
+		for i in rule[1:]:
+			print(i, end=' ')
+		print()
+
+def write_grammar(grammar):
+    file = open('cnf_grammar.txt', 'w')
+    for rule in grammar:
+        file.write(rule[0])
+        file.write(" -> ")
+        for i in rule[1:]:
+            file.write(i)
+            file.write(" ")
+        file.write("\n")
+    file.close()
 
 def read_grammar(grammar_file):
     with open(grammar_file) as cfg:
@@ -49,3 +66,7 @@ def convert_grammar(grammar):
                     unit_productions.append(new_rule)
                 add_rule(new_rule)
     return result
+
+if __name__ == '__main__':
+
+    write_grammar(convert_grammar(read_grammar('grammar.txt')))
