@@ -71,7 +71,7 @@ rules = [
         (r'==','DOUBLEEQUAL'),
         (r'=','EQUALS'),
         (r'!=', 'NOT_EQUAL'),
-        (r',', 'COMA'),
+        (r',', 'COMMA'),
         (r'>=', 'GREATER_OR_EQUAL_THAN'),
         (r'>', 'GREATER_THAN'),
         (r'<=', 'LESS_OR_EQUAL_THAN'),
