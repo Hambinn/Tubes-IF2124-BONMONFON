@@ -9,14 +9,14 @@ a1 = int(input("Masukkan angka pertama: "))
 a2 = int(input("Masukkan angka kedua: "))                                       
 operator = str(input("Masukkan operator: "))                                    
 if (operator == "+"):                                                           
-    print(str(a1) + " " + str(operator) + " " + str(a2) + " = " + str(a1 + a2)) 
+    print(a1 + a2) 
 elif (operator == "-"):                                                         
-    print(str(a1) + " " + str(operator) + " " + str(a2) + " = " + str(a1 - a2)) 
+    print(a1 - a2)
 elif (operator == "*"):                                                         
-    print(str(a1) + " " + str(operator) + " " + str(a2) + " = " + str(a1 * a2)) 
+    print(a1 * a2)
 elif (operator == "/"):                                                         
-    print(str(a1) + " " + str(operator) + " " + str(a2) + " = " + str(a1 / a2))
+    print(a1 / a2)
 else (operator == "%"):                                                         
-    print(str(a1) + " " + str(operator) + " " + str(a2) + " = " + str(a1 % a2)) 
+    print(a1 % a2)
 else:                                                                              
-    print("Input tidak valid, operator yang diterima adalah + (tambah), - (kurang), * (kali), / (bagi, dibulatkan ke bawah), dan % (sisa bagi)")        # Jika operator yang dipilih selain +, -, *, /, dan %, maka akan muncul kalimat yang memberitahu bahwa input tidak valid  
+    print("Input tidak valid, operator yang diterima adalah + (tambah), - (kurang), * (kali), / (bagi), dan % (sisa bagi)")
