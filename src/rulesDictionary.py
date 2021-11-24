@@ -29,7 +29,7 @@ rules = [
         (r'False', 'FALSE'),
         (r'not', 'NOT'),
         (r'and', 'AND'),
-        (r'\sor\s', 'OR'),
+        (r'or', 'OR'),
         (r'is\s', 'IS'),
         (r'with\s', 'WITH'),
         (r'print', 'PRINT'),

@@ -1,4 +1,4 @@
-# test case: class, def, return, for, in
+# test case: class, def, return, for, in, pass
 
 class Bag:
     def __init__(self):
@@ -15,18 +15,24 @@ def add(x, y):
     sum = x + y
     return sum
 
-l = ["geeks", "for", "geeks"]
-for i in l:
-    print(i)
-      
-# Iterating over a tuple (immutable)
-print("\nTuple Iteration")
-t = ("geeks", "for", "geeks")
-for i in t:
-    print(i)
-      
-# Iterating over a String
-print("\nString Iteration")   
-s = "Geeks"
-for i in s :
+# -----------------------------------------
+s = "geeks"
+  
+# Empty loop
+for i in s:
+    # No error will be raised
+    pass
+  
+# Empty function
+def fun():
+    pass
+  
+# No error will be raised
+fun()
+  
+# Pass statement
+for i in s:
+    if i == 'k':
+        print('Pass executed')
+        pass
     print(i)
