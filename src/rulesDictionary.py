@@ -1,30 +1,31 @@
 rules = [
+        # MULTILINE
         (r'\"\"\"', 'TRIPLEQUOTE'),
         (r'\'\'\'', 'TRIPLEQUOTE'),
-        # (r'\"\"\"[\w|\s|\d|\(|\)|\{|\}|\[|\]\=|\.|\:|\'|\"|\,]*\"\"\"', 'COMMENT'),
-        # (r'\'\'\'[\w|\s|\d|\(|\)|\{|\}|\[|\]\=|\.|\:|\"|\'|\,]*\'\'\'', 'COMMENT'),
 
+        # RESERVED WORDS
         (r'from\s', 'FROM'),
         (r'import\s', 'IMPORT'),
         (r'as\s', 'AS'),
-        (r'class\s', 'CLASS'),
         (r'def\s', 'DEF'),
+        (r'for\s', 'FOR'),
+        (r'in\s', 'IN'),
+        (r'range', 'RANGE'),
+        (r'while', 'WHILE'),
+        (r'with\s', 'WITH'),
+        (r'class\s', 'CLASS'),
         (r'return\s', 'RETURN'),
-        (r'pass\s\w', 'PASS_ERR'),
-        (r'pass', 'PASS'),
         (r'raise\s', 'RAISE'),
-        (r'continue\n', 'CONTINUE'),
         (r'break\s\w', 'BREAK_ERR'),
         (r'break', 'BREAK'),
+        (r'continue\n', 'CONTINUE'),
+        (r'pass\s\w', 'PASS_ERR'),
+        (r'pass', 'PASS'),
         (r'if\s', ' IF'),
         (r'if\(', ' IF LP'),
         (r'elif', 'ELIF'),
         (r'elif\(', 'ELIF LP'),
         (r'else', 'ELSE'),
-        (r'for\s', 'FOR'),
-        (r'in\s', 'IN'),
-        (r'range', 'RANGE'),
-        (r'while', 'WHILE'),
         (r'None', 'NONE'),
         (r'True', 'TRUE'),
         (r'False', 'FALSE'),
@@ -32,29 +33,29 @@ rules = [
         (r'and', 'AND'),
         (r'or', 'OR'),
         (r'is\s', 'IS'),
-        (r'with\s', 'WITH'),
         (r'print', 'PRINT'),
-        #(r'len', 'LEN'),
-        # (r'str', 'STR'),
-        # (r'int', 'INT'),
-        # (r'float', 'FLOAT'),
         (r'bool', 'BOOL'),
         (r'abs', 'ABS'),
         (r'round', 'ROUND'),
         (r'pow', 'POW'),
-        # (r'input', 'INPUT'),
         (r'\#.*', 'COMMENT'),
         ('\".*\"', 'STRING'),
         ('\'.*\'', 'STRING'),
         (r'\.', 'WITH_METHOD'),
+
+        #ETCS
         (r':', 'COLON'),
         (r';', 'SEMICOLON'),
         (r'\n', 'NEWLINE'),
         (r'\s', 'WHITESPACE'),
+
+        # VARIABLES & OTHERS
         (r'[\d]+[a-zA-Z_]+[\da-zA-Z_0-9]*','WRONGIDENTIFIER'),
         (r'[a-zA-Z_]+[\da-zA-Z_0-9]*','IDENTIFIER'),
         (r'\d+','NUMBER'),
         (r'\d+.+\d','FLOAT'),
+
+        # OPERATORS
         (r'\+=', 'PLUS_EQUALS'),
         (r'\-=', 'MINUS_EQUALS'),
         (r'\*=', 'MULTIPLY_EQUALS'),
@@ -67,10 +68,6 @@ rules = [
         (r'\*','MULTIPLY'),
         (r'\/','DIVIDE'),
         (r'\%', 'MOD'),
-        (r'\[', 'LB'),
-        (r'\]', 'RB'),
-        (r'\(','LP'),
-        (r'\)','RP'),
         (r'==','DOUBLEEQUAL'),
         (r'=','EQUALS'),
         (r'!=', 'NOT_EQUAL'),
@@ -80,7 +77,12 @@ rules = [
         (r'<=', 'LESS_OR_EQUAL_THAN'),
         (r'<', 'LESS_THAN'),
 
+        # PARENTHESIS & BRACKETS
+        (r'\[', 'LB'),
+        (r'\]', 'RB'),
+        (r'\(','LP'),
+        (r'\)','RP'),
 
-        # random case
+        # OTHERS
         (r'\w', 'NULL'),
     ]
